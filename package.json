@@ -1,5 +1,5 @@
 {
-  "name": "boole",
+  "name": "@boole/boole",
   "version": "0.0.0",
   "description": "Local-first LLM inference SDK with optional remote burst scaling",
   "license": "Apache-2.0",
@@ -68,10 +68,6 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/boole.git"
-  },
-  "bugs": {
-    "url": "https://github.com/yourusername/boole/issues"
-  },
-  "homepage": "https://github.com/yourusername/boole#readme"
+    "url": "git+https://github.com/boole-ai/boole-npm"
+  }
 }

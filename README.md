@@ -2,11 +2,11 @@
 
 **Local-first LLM inference for JavaScript & TypeScript.**
 Run GGUF models on your own hardware via llama.cpp — get cloud-SDK ergonomics without the cloud bill.
-
+<!-- 
 [![npm version](https://img.shields.io/npm/v/boole.svg)](https://www.npmjs.com/package/boole)
 [![CI](https://github.com/<org>/boole/actions/workflows/ci.yml/badge.svg)](https://github.com/<org>/boole/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/boole.svg)](./LICENSE)
-[![node](https://img.shields.io/node/v/boole.svg)](package.json)
+[![node](https://img.shields.io/node/v/boole.svg)](package.json) -->
 
 ```bash
 npm install boole
