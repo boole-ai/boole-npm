@@ -2,7 +2,7 @@
   "name": "localforge",
   "version": "0.0.0",
   "description": "Local-first LLM inference SDK with optional remote burst scaling",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "type": "module",
   "engines": {
     "node": ">=20"
