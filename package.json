@@ -1,5 +1,5 @@
 {
-  "name": "localforge",
+  "name": "boole",
   "version": "0.0.0",
   "description": "Local-first LLM inference SDK with optional remote burst scaling",
   "license": "Apache-2.0",
@@ -27,12 +27,15 @@
     "README.md",
     "LICENSE"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsup",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
-    "lint": "eslint src test examples",
+    "lint": "eslint src",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"examples/**/*.ts\"",
     "format:check": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\" \"examples/**/*.ts\"",
     "changeset": "changeset",
@@ -65,10 +68,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/localforge.git"
+    "url": "git+https://github.com/yourusername/boole.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/localforge/issues"
+    "url": "https://github.com/yourusername/boole/issues"
   },
-  "homepage": "https://github.com/yourusername/localforge#readme"
+  "homepage": "https://github.com/yourusername/boole#readme"
 }
