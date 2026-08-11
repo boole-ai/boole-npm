@@ -1,0 +1,15 @@
+src
+test
+examples
+.github
+*.config.ts
+*.config.js
+tsconfig.json
+.eslintrc.cjs
+.prettierrc
+.changeset
+coverage
+.DS_Store
+*.log
+*.tgz
+node_modules
