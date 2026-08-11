@@ -4,7 +4,6 @@
 Run GGUF models on your own hardware via llama.cpp — get cloud-SDK ergonomics without the cloud bill.
 
 [![npm version](https://img.shields.io/npm/v/@boole/boole.svg)](https://www.npmjs.com/package/@boole/boole)
-[![CI](https://github.com/boole/boole/actions/workflows/ci.yml/badge.svg)](https://github.com/boole/boole/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/@boole/boole.svg)](./LICENSE)
 [![node](https://img.shields.io/node/v/@boole/boole.svg)](package.json)
 
