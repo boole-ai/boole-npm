@@ -2,14 +2,14 @@
 
 **Local-first LLM inference for JavaScript & TypeScript.**
 Run GGUF models on your own hardware via llama.cpp — get cloud-SDK ergonomics without the cloud bill.
-<!-- 
-[![npm version](https://img.shields.io/npm/v/boole.svg)](https://www.npmjs.com/package/boole)
-[![CI](https://github.com/<org>/boole/actions/workflows/ci.yml/badge.svg)](https://github.com/<org>/boole/actions/workflows/ci.yml)
-[![license](https://img.shields.io/npm/l/boole.svg)](./LICENSE)
-[![node](https://img.shields.io/node/v/boole.svg)](package.json) -->
+
+[![npm version](https://img.shields.io/npm/v/@boole/boole.svg)](https://www.npmjs.com/package/@boole/boole)
+[![CI](https://github.com/boole/boole/actions/workflows/ci.yml/badge.svg)](https://github.com/boole/boole/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/@boole/boole.svg)](./LICENSE)
+[![node](https://img.shields.io/node/v/@boole/boole.svg)](package.json)
 
 ```bash
-npm install boole
+npm install @boole/boole
 ```
 
 ---
@@ -35,7 +35,7 @@ to.**
 ## Quickstart
 
 ```ts
-import { App } from "boole";
+import { App } from "@boole/boole";
 
 const app = new App({ name: "my-app" });
 
@@ -48,7 +48,8 @@ const result = await generate.call("Write a haiku about GPUs");
 console.log(result);
 ```
 
-The first call downloads and caches the GGUF weights to `~/.boole/models` (configurable); every call after that loads from disk and runs entirely on your machine.
+The first call downloads and caches the GGUF weights to `~/.boole/models`; every call
+after that loads from disk and runs entirely on your machine.
 
 ## Core concepts
 
@@ -93,16 +94,11 @@ fall back to compiling from source on install.
 ## Configuration
 
 ```ts
-import { Client } from "boole";
+import { Client } from "@boole/boole";
 
 const client = new Client({
-  modelCache: {
-    cacheDir: "~/.boole/models",  // where GGUF files are stored
-  },
-  engine: {
-    gpuLayers: 32,                  // GPU offload layers
-    contextSize: 4096,              // context window
-  },
+  modelCacheDir: "~/.boole/models", // where GGUF files are stored
+  defaultBackend: "llama-cpp",      // inference backend
 });
 ```
 
@@ -118,7 +114,3 @@ const client = new Client({
 
 Issues and PRs welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) for local dev setup
 (`pnpm install`, `pnpm test`, `pnpm build`).
-
-## License
-
-Apache 2.0
