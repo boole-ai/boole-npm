@@ -1,6 +1,6 @@
 {
   "name": "@boole/boole",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Local-first LLM inference SDK with optional remote burst scaling",
   "license": "Apache-2.0",
   "type": "module",
