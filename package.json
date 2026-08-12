@@ -1,7 +1,7 @@
 {
-  "name": "@boole/boole",
-  "version": "0.0.3",
-  "description": "Local-first LLM inference SDK with optional remote burst scaling",
+  "name": "@boole/boole-ai",
+  "version": "0.2.0",
+  "description": "Local-first LLM inference SDK for JavaScript & TypeScript. Run GGUF models on your own hardware via llama.cpp, with an App/Function/Sandbox API and a 10x cost cut over always-remote inference.",
   "license": "Apache-2.0",
   "type": "module",
   "engines": {
@@ -61,13 +61,24 @@
     "llm",
     "inference",
     "local-first",
+    "on-device",
+    "edge-ai",
     "llama.cpp",
     "gguf",
+    "local-llm",
+    "typescript",
+    "nodejs",
+    "sdk",
     "ai",
-    "machine-learning"
+    "machine-learning",
+    "text-generation",
+    "self-hosted",
+    "offline-ai",
+    "sandbox",
+    "serverless-alternative"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/boole-ai/boole-npm"
+    "url": "git+https://github.com/boole-ai/boole-npm.git"
   }
 }

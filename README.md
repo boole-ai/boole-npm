@@ -1,4 +1,4 @@
-# Boole
+# Boole AI
 
 **Local-first LLM inference for JavaScript & TypeScript.**
 Run GGUF models on your own hardware via llama.cpp — get cloud-SDK ergonomics without the cloud bill.
@@ -8,7 +8,7 @@ Run GGUF models on your own hardware via llama.cpp — get cloud-SDK ergonomics 
 [![node](https://img.shields.io/node/v/@boole/boole.svg)](package.json)
 
 ```bash
-npm install @boole/boole
+npm install @boole/boole-ai
 ```
 
 ---
