@@ -1,4 +1,4 @@
-# Boole AI
+# Boole Inference
 
 **Local-first LLM inference for JavaScript & TypeScript.**
 Run GGUF models on your own hardware via llama.cpp — get cloud-SDK ergonomics without the cloud bill.

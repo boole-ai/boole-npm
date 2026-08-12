@@ -1,8 +1,13 @@
 {
-  "name": "@boole/boole-ai",
-  "version": "0.2.0",
+  "name": "@boole/boole-inference",
+  "version": "0.3.0",
   "description": "Local-first LLM inference SDK for JavaScript & TypeScript. Run GGUF models on your own hardware via llama.cpp, with an App/Function/Sandbox API and a 10x cost cut over always-remote inference.",
   "license": "Apache-2.0",
+  "author": "Boole AI",
+  "homepage": "https://github.com/boole-ai/boole-npm#readme",
+  "bugs": {
+    "url": "https://github.com/boole-ai/boole-npm/issues"
+  },
   "type": "module",
   "engines": {
     "node": ">=20"
@@ -63,7 +68,9 @@
     "local-first",
     "on-device",
     "edge-ai",
+    "llama",
     "llama.cpp",
+    "llamacpp",
     "gguf",
     "local-llm",
     "typescript",
@@ -75,7 +82,24 @@
     "self-hosted",
     "offline-ai",
     "sandbox",
-    "serverless-alternative"
+    "serverless-alternative",
+    "private-ai",
+    "privacy-first",
+    "cost-effective",
+    "streaming",
+    "metal",
+    "cuda",
+    "gpu-inference",
+    "cpu-inference",
+    "chatbot",
+    "mistral",
+    "llama2",
+    "llama3",
+    "model-caching",
+    "zero-cost",
+    "serverless",
+    "embeddings",
+    "no-api-key"
   ],
   "repository": {
     "type": "git",
