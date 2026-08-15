@@ -2,7 +2,7 @@
   "name": "boole-ai",
   "version": "0.6.0",
   "description": "Local-first LLM inference SDK for JavaScript & TypeScript. Run GGUF models on your own hardware via llama.cpp, with an App/Function/Sandbox API and a 10x cost cut over always-remote inference.",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "author": "Boole AI",
   "homepage": "https://github.com/boole-ai/boole-npm#readme",
   "bugs": {
