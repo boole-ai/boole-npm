@@ -1,7 +1,7 @@
-# Boole Inference
+# Boole
 
-**Local-first LLM inference for JavaScript & TypeScript.**
-Run GGUF models on your own hardware via llama.cpp — get cloud-SDK ergonomics without the cloud bill.
+**Deploy and run AI models locally and at the edge.**
+TypeScript SDK for running GGUF models on your own hardware via llama.cpp — no cloud required.
 
 [![npm version](https://img.shields.io/npm/v/boole-ai.svg)](https://www.npmjs.com/package/boole-ai)
 [![license](https://img.shields.io/npm/l/boole-ai.svg)](./LICENSE)
@@ -15,21 +15,14 @@ npm install boole-ai
 
 ## Why Boole
 
-Most inference SDKs assume every call leaves your machine. You pay per token, per second of
-GPU time, per cold start — even for workloads your own laptop or workstation could handle in
-milliseconds. Boole flips the default: **inference runs locally unless you tell it not
-to.**
+Most inference SDKs route every call to the cloud. Boole lets you **deploy models to your edge infrastructure or local hardware** and run inference where your data lives — no round-trip to a remote API, no metered billing for work your own machines can handle.
 
-- **~10x cheaper by default** — no metered API calls for work your hardware can already do.
-- **No cold starts** — models load once into a long-lived local process, not a fresh
-  container on every request.
-- **No data leaves your machine** — prompts, context, and outputs stay local unless you
-  explicitly opt into remote burst.
-- **Familiar shape** — `App`, `Function`, and `Sandbox` primitives will feel immediately
-  natural if you've used a serverless inference SDK before.
-- **Burst when you need to** — for models too large for local hardware, or workloads that
-  need to scale past one machine, the same function can transparently hand off to remote
-  compute (opt-in, v1).
+- **Deploy once, run anywhere** — models stay on your edge servers, laptops, or workstations; no cloud dependency after initial download.
+- **~10x cheaper** — no per-token metering or GPU-second billing for local workloads.
+- **No cold starts** — models load once into a long-lived process, not a fresh container on every request.
+- **Private by default** — prompts, context, and outputs never leave your infrastructure.
+- **Familiar shape** — `App`, `Function`, and `Sandbox` primitives mirror serverless inference SDKs, but run locally.
+- **Burst when you need to** — for models too large for local hardware, the same function can hand off to remote compute (opt-in, roadmap).
 
 ## Quickstart
 
@@ -113,3 +106,7 @@ const client = new Client({
 
 Issues and PRs welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md) for local dev setup
 (`pnpm install`, `pnpm test`, `pnpm build`).
+
+---
+
+**MIT © Jordan Plows**
