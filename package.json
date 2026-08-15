@@ -1,6 +1,6 @@
 {
-  "name": "boole-ai",
-  "version": "0.6.2",
+  "name": "@boole/boole-ai",
+  "version": "0.6.4",
   "description": "Run AI models at the edge with zero network latency. TypeScript SDK for local-first LLM inference via llama.cpp/GGUF — no cold starts, no round-trips, no cloud dependency.",
   "license": "MIT",
   "author": "Boole AI",
