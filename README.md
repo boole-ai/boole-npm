@@ -3,12 +3,12 @@
 **Local-first LLM inference for JavaScript & TypeScript.**
 Run GGUF models on your own hardware via llama.cpp — get cloud-SDK ergonomics without the cloud bill.
 
-[![npm version](https://img.shields.io/npm/v/@boole/boole.svg)](https://www.npmjs.com/package/@boole/boole)
-[![license](https://img.shields.io/npm/l/@boole/boole.svg)](./LICENSE)
-[![node](https://img.shields.io/node/v/@boole/boole.svg)](package.json)
+[![npm version](https://img.shields.io/npm/v/boole-ai.svg)](https://www.npmjs.com/package/boole-ai)
+[![license](https://img.shields.io/npm/l/boole-ai.svg)](./LICENSE)
+[![node](https://img.shields.io/node/v/boole-ai.svg)](package.json)
 
 ```bash
-npm install @boole/boole-ai
+npm install boole-ai
 ```
 
 ---
@@ -34,7 +34,7 @@ to.**
 ## Quickstart
 
 ```ts
-import { App } from "@boole/boole";
+import { App } from "boole-ai";
 
 const app = new App({ name: "my-app" });
 
@@ -93,7 +93,7 @@ fall back to compiling from source on install.
 ## Configuration
 
 ```ts
-import { Client } from "@boole/boole";
+import { Client } from "boole-ai";
 
 const client = new Client({
   modelCacheDir: "~/.boole/models", // where GGUF files are stored
