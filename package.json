@@ -1,7 +1,7 @@
 {
   "name": "boole-ai",
-  "version": "0.6.1",
-  "description": "Deploy and run AI models locally and at the edge. TypeScript SDK for local-first LLM inference via llama.cpp/GGUF — no cloud required.",
+  "version": "0.6.2",
+  "description": "Run AI models at the edge with zero network latency. TypeScript SDK for local-first LLM inference via llama.cpp/GGUF — no cold starts, no round-trips, no cloud dependency.",
   "license": "MIT",
   "author": "Boole AI",
   "homepage": "https://github.com/boole-ai/boole-npm#readme",
@@ -67,6 +67,8 @@
     "edge-deployment",
     "local-ai",
     "on-device-ai",
+    "low-latency",
+    "real-time-ai",
     "local-first",
     "offline-ai",
     "self-hosted-ai",

@@ -1,7 +1,8 @@
 # Boole
 
-**Deploy and run AI models locally and at the edge.**
-TypeScript SDK for running GGUF models on your own hardware via llama.cpp — no cloud required.
+**Run AI models at the edge, as fast as your hardware allows.**
+
+No network round-trip. No cold start. No queueing behind someone else's request. Boole runs GGUF models directly on the device via llama.cpp, so the only latency between a prompt and a response is the model itself.
 
 [![npm version](https://img.shields.io/npm/v/boole-ai.svg)](https://www.npmjs.com/package/boole-ai)
 [![license](https://img.shields.io/npm/l/boole-ai.svg)](./LICENSE)
@@ -15,14 +16,13 @@ npm install boole-ai
 
 ## Why Boole
 
-Most inference SDKs route every call to the cloud. Boole lets you **deploy models to your edge infrastructure or local hardware** and run inference where your data lives — no round-trip to a remote API, no metered billing for work your own machines can handle.
-
-- **Deploy once, run anywhere** — models stay on your edge servers, laptops, or workstations; no cloud dependency after initial download.
-- **~10x cheaper** — no per-token metering or GPU-second billing for local workloads.
-- **No cold starts** — models load once into a long-lived process, not a fresh container on every request.
-- **Private by default** — prompts, context, and outputs never leave your infrastructure.
-- **Familiar shape** — `App`, `Function`, and `Sandbox` primitives mirror serverless inference SDKs, but run locally.
-- **Burst when you need to** — for models too large for local hardware, the same function can hand off to remote compute (opt-in, roadmap).
+- **Zero network round-trip** — inference happens on-device, not across the internet
+- **No cold starts** — models stay loaded in a long-lived local process
+- **No shared infrastructure** — no queueing behind other tenants' requests
+- **~10x cheaper** — no metered API calls for work your hardware already does
+- **Private by default** — prompts, context, and outputs never leave your machine
+- **Familiar shape** — `App`, `Function`, and `Sandbox` primitives mirror serverless inference SDKs, but run locally
+- **Burst when you need to** — for models too large for local hardware, the same function can hand off to remote compute (opt-in, roadmap)
 
 ## Quickstart
 
