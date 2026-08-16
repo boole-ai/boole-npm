@@ -1,5 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { App, Client } from "../src/index.js";
+import type { InferenceEngine } from "../src/engine/types.js";
 
 describe("App", () => {
   it("should create an app with a name", () => {
@@ -28,7 +29,20 @@ describe("App", () => {
   });
 
   it("should create a local function", () => {
-    const app = new App({ name: "test-app" });
+    // Mock the client's createEngine to avoid NotImplementedError
+    const mockEngine: InferenceEngine = {
+      loadModel: vi.fn().mockResolvedValue(undefined),
+      unloadModel: vi.fn().mockResolvedValue(undefined),
+      generate: vi.fn(),
+      generateStream: vi.fn(),
+      getModelInfo: vi.fn().mockReturnValue(null),
+      isLoaded: vi.fn().mockReturnValue(false),
+    };
+
+    const client = new Client();
+    vi.spyOn(client, "createEngine").mockReturnValue(mockEngine);
+
+    const app = new App({ name: "test-app", client });
     const fn = app.function(
       {
         model: "test-model",

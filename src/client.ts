@@ -1,26 +1,25 @@
 import { ModelResolver, ModelResolverConfig } from "./models/resolver.js";
-import { LlamaCppEngine, LlamaCppEngineConfig } from "./engine/llama-cpp-engine.js";
 import { InferenceEngine } from "./engine/types.js";
+import { NotImplementedError } from "./errors.js";
 
 export interface ClientConfig {
   modelCache?: ModelResolverConfig;
-  engine?: LlamaCppEngineConfig;
   remoteAuthToken?: string;
 }
 
 export class Client {
   private modelResolver: ModelResolver;
-  private defaultEngineConfig: LlamaCppEngineConfig;
   private remoteAuthToken?: string;
 
   constructor(config: ClientConfig = {}) {
     this.modelResolver = new ModelResolver(config.modelCache);
-    this.defaultEngineConfig = config.engine ?? {};
     this.remoteAuthToken = config.remoteAuthToken;
   }
 
   createEngine(): InferenceEngine {
-    return new LlamaCppEngine(this.defaultEngineConfig);
+    throw new NotImplementedError(
+      "No default inference engine available. Extend Client and override createEngine() with your own implementation."
+    );
   }
 
   getModelResolver(): ModelResolver {

@@ -29,9 +29,6 @@ export type {
   ModelInfo,
 } from "./engine/types.js";
 
-export { LlamaCppEngine } from "./engine/llama-cpp-engine.js";
-export type { LlamaCppEngineConfig } from "./engine/llama-cpp-engine.js";
-
 export {
   LocalforgeError,
   ModelNotFoundError,

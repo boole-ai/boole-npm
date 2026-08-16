@@ -1,8 +1,8 @@
 # Boole
 
-**Run AI models at the edge, as fast as your hardware allows.**
+**Inference SDK for edge AI deployment.**
 
-No network round-trip. No cold start. No queueing behind someone else's request. Boole runs GGUF models directly on the device via llama.cpp, so the only latency between a prompt and a response is the model itself.
+A TypeScript framework for building local-first LLM applications with a familiar App/Function/Sandbox API. Bring your own inference engine.
 
 [![npm version](https://img.shields.io/npm/v/boole-ai.svg)](https://www.npmjs.com/package/boole-ai)
 [![license](https://img.shields.io/npm/l/boole-ai.svg)](./LICENSE)
@@ -16,32 +16,77 @@ npm install boole-ai
 
 ## Why Boole
 
-- **Zero network round-trip** — inference happens on-device, not across the internet
-- **No cold starts** — models stay loaded in a long-lived local process
-- **No shared infrastructure** — no queueing behind other tenants' requests
-- **~10x cheaper** — no metered API calls for work your hardware already does
-- **Private by default** — prompts, context, and outputs never leave your machine
-- **Familiar shape** — `App`, `Function`, and `Sandbox` primitives mirror serverless inference SDKs, but run locally
-- **Burst when you need to** — for models too large for local hardware, the same function can hand off to remote compute (opt-in, roadmap)
+- **Familiar shape** — `App`, `Function`, and `Sandbox` primitives that mirror serverless inference SDKs
+- **Bring your own engine** — Abstract inference interface lets you plug in any backend
+- **Type-safe** — Full TypeScript support with type inference
+- **Local-first** — Designed for edge deployment and on-device inference
+- **Flexible** — Supports both local and remote inference patterns
 
-## Quickstart
+## Installation
 
-```ts
-import { App } from "boole-ai";
-
-const app = new App({ name: "my-app" });
-
-const generate = app.function(
-  { model: "TheBloke/Mistral-7B-Instruct-v0.2-GGUF", quant: "Q4_K_M" },
-  async (ctx, prompt: string) => ctx.llm.generate(prompt),
-);
-
-const result = await generate.call("Write a haiku about GPUs");
-console.log(result);
+```bash
+npm install @boole/boole-ai
 ```
 
-The first call downloads and caches the GGUF weights to `~/.boole/models`; every call
-after that loads from disk and runs entirely on your machine.
+## Usage
+
+Boole provides the framework; you provide the inference engine.
+
+### 1. Implement InferenceEngine
+
+```ts
+import { InferenceEngine, GenerateOptions, GenerateResult } from "@boole/boole-ai";
+
+class MyEngine implements InferenceEngine {
+  async loadModel(modelPath: string): Promise<void> {
+    // Load your model
+  }
+
+  async generate(prompt: string, options?: GenerateOptions): Promise<GenerateResult> {
+    // Generate text
+    return {
+      text: "Generated response",
+      tokensGenerated: 10,
+      stopReason: "end_of_text",
+    };
+  }
+
+  async *generateStream(prompt: string, options?: GenerateOptions) {
+    // Stream tokens
+    yield { text: "token", isComplete: false, tokensGenerated: 1 };
+  }
+
+  // ... other required methods
+}
+```
+
+### 2. Extend Client
+
+```ts
+import { Client } from "@boole/boole-ai";
+
+class MyClient extends Client {
+  createEngine() {
+    return new MyEngine();
+  }
+}
+```
+
+### 3. Build Your App
+
+```ts
+import { App } from "@boole/boole-ai";
+
+const client = new MyClient();
+const app = new App({ name: "my-app", client });
+
+const generate = app.function(
+  { model: "my-model" },
+  async (ctx, prompt: string) => ctx.llm.generate(prompt)
+);
+
+const result = await generate.call("Hello!");
+```
 
 ## Core concepts
 
@@ -68,39 +113,56 @@ const sandbox = app.sandbox({ timeoutMs: 5000, memoryLimitMb: 512 });
 const { stdout } = await sandbox.exec("node", ["-e", "console.log(1 + 1)"]);
 ```
 
-## Platform support
+## Architecture
 
-Boole uses native bindings (via `node-llama-cpp`) to talk to llama.cpp directly, with
-GPU offload where available.
+Boole provides:
+- **Interfaces** — `InferenceEngine` for plugging in your backend
+- **Primitives** — `App`, `Function`, `Sandbox` for structuring inference workloads
+- **Abstractions** — `ModelResolver` for model discovery and caching
 
-| Platform | CPU | GPU acceleration |
-|---|---|---|
-| macOS (Apple Silicon) | ✅ | ✅ Metal |
-| macOS (Intel) | ✅ | — |
-| Linux (x64/arm64) | ✅ | ✅ CUDA / Vulkan |
-| Windows (x64) | ✅ | ✅ CUDA / Vulkan |
+You provide:
+- **Engine implementation** — Connect to llama.cpp, Workers AI, Replicate, OpenAI, etc.
+- **Model handling** — How models are loaded, cached, and managed
 
-Prebuilt binaries are used where available; unsupported platform/architecture combinations
-fall back to compiling from source on install.
+## API Reference
 
-## Configuration
+### InferenceEngine Interface
 
 ```ts
-import { Client } from "boole-ai";
-
-const client = new Client({
-  modelCacheDir: "~/.boole/models", // where GGUF files are stored
-  defaultBackend: "llama-cpp",      // inference backend
-});
+interface InferenceEngine {
+  loadModel(modelPath: string): Promise<void>;
+  unloadModel(): Promise<void>;
+  generate(prompt: string, options?: GenerateOptions): Promise<GenerateResult>;
+  generateStream(prompt: string, options?: GenerateOptions): AsyncGenerator<StreamChunk>;
+  getModelInfo(): ModelInfo | null;
+  isLoaded(): boolean;
+}
 ```
 
-## Roadmap
+### Types
 
-- [x] Local inference via llama.cpp / GGUF
-- [x] `App` / `Function` / `Sandbox` primitives
-- [ ] `RemoteBurst` — opt-in remote fallback for oversized models / scaled workloads
-- [ ] Structured output / grammar-constrained generation helpers
-- [ ] Bun runtime support
+```ts
+interface GenerateOptions {
+  temperature?: number;
+  topP?: number;
+  topK?: number;
+  maxTokens?: number;
+  repeatPenalty?: number;
+}
+
+interface GenerateResult {
+  text: string;
+  tokensGenerated: number;
+  stopReason: "end_of_text" | "max_tokens" | "stop_sequence";
+}
+
+interface StreamChunk {
+  text: string;
+  isComplete: boolean;
+  tokensGenerated: number;
+  stopReason?: "end_of_text" | "max_tokens" | "stop_sequence";
+}
+```
 
 ## Contributing
 

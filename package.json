@@ -1,7 +1,7 @@
 {
   "name": "@boole/boole-ai",
   "version": "0.6.4",
-  "description": "Run AI models at the edge with zero network latency. TypeScript SDK for local-first LLM inference via llama.cpp/GGUF — no cold starts, no round-trips, no cloud dependency.",
+  "description": "TypeScript framework for building local-first LLM applications. Bring your own inference engine — supports any backend (llama.cpp, Workers AI, OpenAI, etc).",
   "license": "MIT",
   "author": "Boole AI",
   "homepage": "https://github.com/boole-ai/boole-npm#readme",
@@ -47,9 +47,7 @@
     "version": "changeset version",
     "release": "pnpm build && changeset publish"
   },
-  "dependencies": {
-    "node-llama-cpp": "^3.1.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
     "@eslint/js": "^9.39.5",
